@@ -90,12 +90,12 @@ class PhotoBoothApp:
         # grab the current timestamp and use it to construct the
         # output path
         ts = datetime.datetime.now()
-        filename = "{}.jpg".format(ts.strftime("%Y-%m-%d_%H-%M-%S"))
+        filename = f'{ts.strftime("%Y-%m-%d_%H-%M-%S")}.jpg'
         p = os.path.sep.join((self.outputPath, filename))
 
         # save the file
         cv2.imwrite(p, self.frame.copy())
-        print("[INFO] saved {}".format(filename))
+        print(f"[INFO] saved {filename}")
 
     def onClose(self):
         # set the stop event, cleanup the camera, and allow the rest of

@@ -50,17 +50,16 @@ while cap.isOpened():
     if key == ord("q"):
         break
     if key == ord('s'):
-        cv2.imwrite(id_generator() + '.jpg', frame2)
+        cv2.imwrite(f'{id_generator()}.jpg', frame2)
 
     # Capture frame-by-frame
     ret, frame = cap.read()
     m = mse(cv2.cvtColor(temp, cv2.COLOR_BGR2GRAY), cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
     print('mse', m, '----\n')
-    if abs(m - tm) < 2:  # 静止画面，不用重复计算
+    if abs(m - tm) < 2:
         continue
-    else:
-        temp = frame.copy()
-        tm = m
+    temp = frame.copy()
+    tm = m
     #
     # print(margin,frame.shape[0] - margin, margin,frame.shape[1] - margin)#40 680 40 1240
     frame2 = frame[margin:frame.shape[0] - margin, margin:frame.shape[1] - margin]  # .copy()

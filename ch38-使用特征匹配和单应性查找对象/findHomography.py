@@ -8,6 +8,7 @@
 findHomography.py:联合使用特征提取和 calib3d 模块中的 findHomography 在复杂图像中查找已知对象
 """
 
+
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
@@ -29,10 +30,7 @@ flann = cv2.FlannBasedMatcher(index_params, search_params)
 matches = flann.knnMatch(des1, des2, k=2)
 
 # store all the good matches as per Lowe's ratio test.
-good = []
-for m, n in matches:
-    if m.distance < 0.7 * n.distance:
-        good.append(m)
+good = [m for m, n in matches if m.distance < 0.7 * n.distance]
 '''
 现在我们 置只有存在 10 个以上匹 时才去查找目标 MIN_MATCH_COUNT=10   否则显示 告消息  现在匹 不   
 如果找到了 够的匹  我们 提取两幅图像中匹 点的坐标。把它们传 入到函数中 算  变换。一旦我们找到 3x3 的变换矩  就可以使用它将查  图像的四个 点 四个  变换到目标图像中去了。然后再绘制出来。

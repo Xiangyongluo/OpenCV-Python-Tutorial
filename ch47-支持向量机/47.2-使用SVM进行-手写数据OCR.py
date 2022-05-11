@@ -36,8 +36,7 @@ def hog(img):
     bin_cells = bins[:10, :10], bins[10:, :10], bins[:10, 10:], bins[10:, 10:]
     mag_cells = mag[:10, :10], mag[10:, :10], mag[:10, 10:], mag[10:, 10:]
     hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]
-    hist = np.hstack(hists)  # hist is a 64 bit vector
-    return hist
+    return np.hstack(hists)
 
 
 # 最后 和前 一样 我们将大图分割成小图。使用每个数字的前 250 个作 为训练数据

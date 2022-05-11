@@ -31,11 +31,7 @@ def shift_dft(src, dst=None):
     elif src.dtype != dst.dtype:
         raise TypeError("src and dst must have equal types")
 
-    if src is dst:
-        ret = np.empty(src.shape, src.dtype)
-    else:
-        ret = dst
-
+    ret = np.empty(src.shape, src.dtype) if src is dst else dst
     h, w = src.shape[:2]
 
     cx1 = cx2 = w/2

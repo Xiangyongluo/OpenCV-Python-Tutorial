@@ -8,6 +8,7 @@
 draw最大的轮廓.py:
 """
 
+
 import cv2
 import numpy as np
 
@@ -22,10 +23,7 @@ cv2.imshow('after threshold', threshold)
 
 image, contours, hierarchy = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-areas = list()
-for i, cnt in enumerate(contours):
-    areas.append((i, cv2.contourArea(cnt)))#面积大小
-
+areas = [(i, cv2.contourArea(cnt)) for i, cnt in enumerate(contours)]
 #
 a2 = sorted(areas, key=lambda d: d[1], reverse=True)#按面积大小，从大到小排序
 

@@ -30,11 +30,7 @@ while True:
     b = cv2.getTrackbarPos('B', 'image')
     s = cv2.getTrackbarPos(switch, 'image')  # 另外一个重要应用就是用作转换按钮
 
-    if s == 0:
-        img[:] = 0
-    else:
-        img[:] = [b, g, r]
-
+    img[:] = 0 if s == 0 else [b, g, r]
     cv2.imshow('image', img)
     k = cv2.waitKey(1)  # & 0xFF
     if k == ord("q"):

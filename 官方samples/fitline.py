@@ -49,10 +49,7 @@ def sample_line(p1, p2, n, noise=0.0):
 
 dist_func_names = it.cycle('DIST_L2 DIST_L1 DIST_L12 DIST_FAIR DIST_WELSCH DIST_HUBER'.split())
 
-if PY3:
-    cur_func_name = next(dist_func_names)
-else:
-    cur_func_name = dist_func_names.next()
+cur_func_name = next(dist_func_names) if PY3 else dist_func_names.next()
 
 def update(_=None):
     noise = cv2.getTrackbarPos('noise', 'fit line')
@@ -90,9 +87,6 @@ if __name__ == '__main__':
         update()
         ch = cv2.waitKey(0)
         if ch == ord('f'):
-            if PY3:
-                cur_func_name = next(dist_func_names)
-            else:
-                cur_func_name = dist_func_names.next()
+            cur_func_name = next(dist_func_names) if PY3 else dist_func_names.next()
         if ch == 27:
             break

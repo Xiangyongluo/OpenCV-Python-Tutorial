@@ -161,7 +161,7 @@ if __name__ == '__main__':
     args.setdefault('--model', 'svm')
     args.setdefault('--data', '../data/letter-recognition.data')
 
-    print('loading data %s ...' % args['--data'])
+    print(f"loading data {args['--data']} ...")
     samples, responses = load_base(args['--data'])
     Model = models[args['--model']]
     model = Model()
@@ -169,10 +169,10 @@ if __name__ == '__main__':
     train_n = int(len(samples)*model.train_ratio)
     if '--load' in args:
         fn = args['--load']
-        print('loading model from %s ...' % fn)
+        print(f'loading model from {fn} ...')
         model.load(fn)
     else:
-        print('training %s ...' % Model.__name__)
+        print(f'training {Model.__name__} ...')
         model.train(samples[:train_n], responses[:train_n])
 
     print('testing...')
@@ -183,6 +183,6 @@ if __name__ == '__main__':
 
     if '--save' in args:
         fn = args['--save']
-        print('saving model to %s ...' % fn)
+        print(f'saving model to {fn} ...')
         model.save(fn)
     cv2.destroyAllWindows()

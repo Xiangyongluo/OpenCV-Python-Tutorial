@@ -4,6 +4,7 @@
 Utility for measuring python opencv API coverage by samples.
 '''
 
+
 # Python 2/3 compatibility
 from __future__ import print_function
 
@@ -12,7 +13,10 @@ import cv2
 import re
 
 if __name__ == '__main__':
-    cv2_callable = set(['cv2.'+name for name in dir(cv2) if callable( getattr(cv2, name) )])
+    cv2_callable = {
+        f'cv2.{name}' for name in dir(cv2) if callable(getattr(cv2, name))
+    }
+
 
     found = set()
     for fn in glob('*.py'):

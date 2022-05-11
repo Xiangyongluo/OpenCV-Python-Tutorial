@@ -42,10 +42,7 @@ if __name__ == '__main__':
         thrs = cv2.getTrackbarPos('threshold', 'distrans')
         mark = cv2.Canny(img, thrs, 3*thrs)
         dist, labels = cv2.distanceTransformWithLabels(~mark, cv2.DIST_L2, 5)
-        if voronoi:
-            vis = cm[np.uint8(labels)]
-        else:
-            vis = cm[np.uint8(dist*2)]
+        vis = cm[np.uint8(labels)] if voronoi else cm[np.uint8(dist*2)]
         vis[mark != 0] = 255
         cv2.imshow('distrans', vis)
 

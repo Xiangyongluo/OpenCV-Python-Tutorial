@@ -29,7 +29,7 @@ class File(object):
         filename = "output/" + self.filename.split('/')[-1]
 
         if filename_override:
-            filename = "output/" + filename_override
+            filename = f"output/{filename_override}"
 
         return cv2.imwrite(filename, image)
 

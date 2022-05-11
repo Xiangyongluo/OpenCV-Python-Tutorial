@@ -63,14 +63,14 @@ if __name__ == '__main__':
             op = opers[0]
         sz = sz*2+1
 
-        str_name = 'MORPH_' + cur_str_mode.upper()
-        oper_name = 'MORPH_' + op.upper()
+        str_name = f'MORPH_{cur_str_mode.upper()}'
+        oper_name = f'MORPH_{op.upper()}'
         st = cv2.getStructuringElement(getattr(cv2, str_name), (sz, sz))
         res = cv2.morphologyEx(img, getattr(cv2, oper_name), st, iterations=iters)
 
-        draw_str(res, (10, 20), 'mode: ' + cur_mode)
-        draw_str(res, (10, 40), 'operation: ' + oper_name)
-        draw_str(res, (10, 60), 'structure: ' + str_name)
+        draw_str(res, (10, 20), f'mode: {cur_mode}')
+        draw_str(res, (10, 40), f'operation: {oper_name}')
+        draw_str(res, (10, 60), f'structure: {str_name}')
         draw_str(res, (10, 80), 'ksize: %d  iters: %d' % (sz, iters))
         cv2.imshow('morphology', res)
 

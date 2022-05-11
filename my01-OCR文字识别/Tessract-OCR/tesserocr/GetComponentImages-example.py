@@ -8,6 +8,7 @@
 GetComponentImages-example.py:
 """
 
+
 from PIL import Image
 from tesserocr import PyTessBaseAPI, RIL
 
@@ -18,7 +19,7 @@ with PyTessBaseAPI() as api:
 
     api.SetImage(image)
     boxes = api.GetComponentImages(RIL.TEXTLINE, True)
-    print('Found {} textline image components.'.format(len(boxes)))
+    print(f'Found {len(boxes)} textline image components.')
     for i, (im, box, _, _) in enumerate(boxes):
         # im is a PIL image object
         # box is a dict with x, y, w and h keys

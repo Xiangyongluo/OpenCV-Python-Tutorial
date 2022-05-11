@@ -27,9 +27,7 @@ def get_image_difference(image_1, image_2):  # 这个函数不行
     img_template_probability_match = cv2.matchTemplate(first_image_hist, second_image_hist, cv2.TM_CCOEFF_NORMED)[0][0]
     img_template_diff = 1 - img_template_probability_match
 
-    # taking only 10% of histogram diff, since it's less accurate than template method
-    commutative_image_diff = (img_hist_diff / 10) + img_template_diff
-    return commutative_image_diff
+    return (img_hist_diff / 10) + img_template_diff
 
 
 def compare(i, j, img):
@@ -50,9 +48,7 @@ def compare(i, j, img):
             # if abs(image_difference-1)>0.5:
             # if image_difference < 0.1:
             #     pairs.append((i, j, x, y, image_difference))
-            if res[0][0] >= 0.8 :#and (i != x and j != y): # 0.9较好
-                if i ==x and j ==y:
-                    continue
+            if res[0][0] >= 0.8 and (i != x or j != y):
                 pairs.append((i, j, x, y, res[0][0]))
         print('--------')
 

@@ -53,5 +53,5 @@ for meth in methods:
     plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
     plt.subplot(122), plt.imshow(img, cmap='gray')
     plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
-    plt.suptitle('method: ' + meth)
+    plt.suptitle(f'method: {meth}')
     plt.show()

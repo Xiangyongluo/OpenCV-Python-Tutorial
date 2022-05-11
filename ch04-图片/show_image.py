@@ -12,6 +12,7 @@ alias show='/Users/play/.py3/bin/python3.6 /Users/play/github/OpenCV-Python-Tuto
 
 """
 
+
 import numpy as np
 import cv2, sys
 
@@ -36,14 +37,9 @@ while True:
     cv2.imshow(title, temp)
 
     k = cv2.waitKey(10)
-    if k == 27 or k == ord('q'):
+    if k in [27, ord('q')]:
         break
-    #TODO 分辨率太大，需要缩放
     if k == ord('g'):
-        # t = temp == img
-        # if t.all():
-        # if t.any():
-        # if temp == img:
         if gray is False:
             temp = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             gray = True

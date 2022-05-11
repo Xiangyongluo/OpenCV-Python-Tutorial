@@ -8,6 +8,7 @@
 图像相减2.py:
 """
 
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,7 +46,7 @@ ret, threshold = cv2.threshold(st, 50, 255, cv2.THRESH_BINARY)
 
 image, contours, hierarchy = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-areas = list()
+areas = []
 for i, cnt in enumerate(contours):
 
     areas.append((i, cv2.contourArea(cnt)))

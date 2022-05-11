@@ -8,13 +8,14 @@
 2-fastNlMeansDenoisingMulti.py:
 """
 
+
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
 cap = cv2.VideoCapture('../data/vtest.avi')
 # create a list of first 5 frames
-img = [cap.read()[1] for i in range(5)]
+img = [cap.read()[1] for _ in range(5)]
 # convert all to grayscale
 gray = [cv2.cvtColor(i, cv2.COLOR_BGR2GRAY) for i in img]
 # convert all to float64

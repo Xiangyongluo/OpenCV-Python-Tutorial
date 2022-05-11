@@ -12,6 +12,7 @@ https://v.qq.com/x/page/t0501y6jtfi.html
 
 """
 
+
 # import the necessary packages
 from __future__ import print_function
 from imutils.object_detection import non_max_suppression
@@ -89,7 +90,7 @@ while cap.isOpened():
     # show some information on the number of bounding boxes
     # filename = imagePath[imagePath.rfind("/") + 1:]
     # print("[INFO] {}: {} original boxes, {} after suppression".format(
-    print("[INFO] {} original boxes, {} after suppression".format(len(rects), len(pick)))
+    print(f"[INFO] {len(rects)} original boxes, {len(pick)} after suppression")
 
     # show the output images
     cv2.imshow("Before NMS", orig)

@@ -78,10 +78,10 @@ def MatchingMethod(param):
    ## [best_match]
 
    ## [match_loc]
-   if (match_method == cv2.TM_SQDIFF or match_method == cv2.TM_SQDIFF_NORMED):
-       matchLoc = minLoc
+   if match_method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+      matchLoc = minLoc
    else:
-       matchLoc = maxLoc
+      matchLoc = maxLoc
    ## [match_loc]
 
    ## [imshow]
@@ -89,8 +89,6 @@ def MatchingMethod(param):
    cv2.rectangle(result, matchLoc, (matchLoc[0] + templ.shape[0], matchLoc[1] + templ.shape[1]), (0,0,0), 2, 8, 0 )
    cv2.imshow(image_window, img_display)
    cv2.imshow(result_window, result)
-   ## [imshow]
-   pass
 
 if __name__ == "__main__":
    main(sys.argv[1:])

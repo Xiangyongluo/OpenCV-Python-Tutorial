@@ -13,6 +13,7 @@ default values:
     <image mask> defaults to ../data/left*.jpg
 '''
 
+
 # Python 2/3 compatibility
 from __future__ import print_function
 
@@ -34,11 +35,7 @@ if __name__ == '__main__':
     args = dict(args)
     args.setdefault('--debug', './output/')
     args.setdefault('--square_size', 1.0)
-    if not img_mask:
-        img_mask = '../data/left*.jpg'  # default
-    else:
-        img_mask = img_mask[0]
-
+    img_mask = img_mask[0] if img_mask else '../data/left*.jpg'
     img_names = glob(img_mask)
     debug_dir = args.get('--debug')
     if not os.path.isdir(debug_dir):
@@ -55,7 +52,7 @@ if __name__ == '__main__':
     h, w = 0, 0
     img_names_undistort = []
     for fn in img_names:
-        print('processing %s... ' % fn, end='')
+        print(f'processing {fn}... ', end='')
         img = cv2.imread(fn, 0)
         if img is None:
             print("Failed to load", fn)
@@ -105,8 +102,8 @@ if __name__ == '__main__':
         # crop and save the image
         x, y, w, h = roi
         dst = dst[y:y+h, x:x+w]
-        outfile = img_found + '_undistorted.png'
-        print('Undistorted image written to: %s' % outfile)
+        outfile = f'{img_found}_undistorted.png'
+        print(f'Undistorted image written to: {outfile}')
         cv2.imwrite(outfile, dst)
 
     cv2.destroyAllWindows()

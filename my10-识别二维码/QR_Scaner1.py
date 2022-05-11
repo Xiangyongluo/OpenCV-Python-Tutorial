@@ -42,12 +42,12 @@ def main():
         barcodeType = barcode.type
 
         # draw the barcode data and barcode type on the image
-        text = "{} ({})".format(barcodeData, barcodeType)
+        text = f"{barcodeData} ({barcodeType})"
         cv2.putText(image, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
                     0.5, (0, 0, 255), 2)
 
         # print the barcode type and data to the terminal
-        print("[INFO] Found {} barcode: {}".format(barcodeType, barcodeData))
+        print(f"[INFO] Found {barcodeType} barcode: {barcodeData}")
 
     # show the output image
     cv2.imshow("Image", image)

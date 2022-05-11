@@ -8,6 +8,7 @@
 图像相减_camera.py:
 """
 
+
 import cv2
 import numpy as np
 
@@ -49,7 +50,7 @@ frame_no = 100
 # cap.set(1, frame_no)#第10帧
 ret, bgimg0 = cap.read()  # 背景
 bgimg = cv2.cvtColor(bgimg0, cv2.COLOR_BGR2GRAY)
-cv2.imshow('bgimg' + str(frame_no), bgimg0)
+cv2.imshow(f'bgimg{frame_no}', bgimg0)
 # cv2.imwrite('desk_bgimg.jpg',bgimg)
 
 while cap.isOpened():

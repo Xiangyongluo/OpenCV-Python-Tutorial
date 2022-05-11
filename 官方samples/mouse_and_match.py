@@ -68,7 +68,7 @@ if __name__ == '__main__':
     '''Loop through all the images in the directory'''
     for infile in glob.glob( os.path.join(path, '*.*') ):
         ext = os.path.splitext(infile)[1][1:] #get the filename extenstion
-        if ext == "png" or ext == "jpg" or ext == "bmp" or ext == "tiff" or ext == "pbm":
+        if ext in ["png", "jpg", "bmp", "tiff", "pbm"]:
             print(infile)
 
             img=cv2.imread(infile,1)

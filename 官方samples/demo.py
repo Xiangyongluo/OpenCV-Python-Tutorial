@@ -60,9 +60,8 @@ class LinkManager:
                 proc = self.links[tag]
                 if callable(proc):
                     proc()
-                else:
-                    if self.url_callback:
-                        self.url_callback(proc)
+                elif self.url_callback:
+                    self.url_callback(proc)
 
 class App:
     def __init__(self):
@@ -158,7 +157,7 @@ class App:
             match_index = text.search(pattern, 'matchPos', count=count, regexp=regexp, stopindex='end')
             if not match_index:
                 break
-            end_index = text.index( "%s+%sc" % (match_index, count.get()) )
+            end_index = text.index(f"{match_index}+{count.get()}c")
             text.mark_set('matchPos', end_index)
             if callable(tag_proc):
                 tag_proc(match_index, end_index, text.get(match_index, end_index))
@@ -168,7 +167,7 @@ class App:
     def on_run(self, *args):
         cmd = self.cmd_entry.get()
         print('running:', cmd)
-        Popen(sys.executable + ' ' + cmd, shell=True)
+        Popen(f'{sys.executable} {cmd}', shell=True)
 
     def run(self):
         tk.mainloop()

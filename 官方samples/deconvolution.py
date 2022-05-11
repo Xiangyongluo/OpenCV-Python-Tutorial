@@ -95,10 +95,7 @@ if __name__ == '__main__':
         d = cv2.getTrackbarPos('d', win)
         noise = 10**(-0.1*cv2.getTrackbarPos('SNR (db)', win))
 
-        if defocus:
-            psf = defocus_kernel(d)
-        else:
-            psf = motion_kernel(ang, d)
+        psf = defocus_kernel(d) if defocus else motion_kernel(ang, d)
         cv2.imshow('psf', psf)
 
         psf /= psf.sum()

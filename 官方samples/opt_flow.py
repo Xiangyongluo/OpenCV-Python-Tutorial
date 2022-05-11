@@ -43,8 +43,7 @@ def draw_hsv(flow):
     hsv[...,0] = ang*(180/np.pi/2)
     hsv[...,1] = 255
     hsv[...,2] = np.minimum(v*4, 255)
-    bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-    return bgr
+    return cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 
 
 def warp_flow(img, flow):
@@ -52,8 +51,7 @@ def warp_flow(img, flow):
     flow = -flow
     flow[:,:,0] += np.arange(w)
     flow[:,:,1] += np.arange(h)[:,np.newaxis]
-    res = cv2.remap(img, flow, None, cv2.INTER_LINEAR)
-    return res
+    return cv2.remap(img, flow, None, cv2.INTER_LINEAR)
 
 if __name__ == '__main__':
     import sys

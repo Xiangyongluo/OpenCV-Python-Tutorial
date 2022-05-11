@@ -32,7 +32,7 @@ cv2.setMouseCallback("Canvas", click_event)
 canvas = np.zeros((300, 300, 3), dtype="uint8")
 while True:
     try:
-        for i in range(0, 25):
+        for _ in range(25):
             radius = np.random.randint(5, high=200)
             color = np.random.randint(0, high=256, size=(3,)).tolist()
             pt = np.random.randint(0, high=300, size=(2,))

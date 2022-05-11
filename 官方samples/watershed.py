@@ -33,7 +33,7 @@ class App:
     def __init__(self, fn):
         self.img = cv2.imread(fn)
         if self.img is None:
-            raise Exception('Failed to load image file: %s' % fn)
+            raise Exception(f'Failed to load image file: {fn}')
 
         h, w = self.img.shape[:2]
         self.markers = np.zeros((h, w), np.int32)

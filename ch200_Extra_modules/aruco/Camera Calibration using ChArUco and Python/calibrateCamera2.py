@@ -27,8 +27,7 @@ def get_image(camera):
 
 
 def make_grayscale(img):
-    ret = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    return ret
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
 def main():

@@ -14,6 +14,7 @@ http://www.pyimagesearch.com/2015/11/09/pedestrian-detection-opencv/
 python Pedestrian_Detection1.py --images images
 """
 
+
 # import the necessary packages
 from __future__ import print_function
 from imutils.object_detection import non_max_suppression
@@ -60,8 +61,10 @@ for imagePath in paths.list_images(args["images"]):
 
     # show some information on the number of bounding boxes
     filename = imagePath[imagePath.rfind("/") + 1:]
-    print("[INFO] {}: {} original boxes, {} after suppression".format(
-        filename, len(rects), len(pick)))
+    print(
+        f"[INFO] {filename}: {len(rects)} original boxes, {len(pick)} after suppression"
+    )
+
 
     # show the output images
     cv2.imshow("Before NMS", orig)

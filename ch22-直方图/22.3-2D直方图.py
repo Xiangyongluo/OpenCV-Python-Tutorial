@@ -22,6 +22,7 @@
 
 """
 
+
 import cv2
 import numpy as np
 
@@ -36,5 +37,3 @@ hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
 h, s, v = cv2.split(hsv)
 
 hist, xbins, ybins = np.histogram2d(h.ravel(), s.ravel(), [180, 256], [[0, 180], [0, 256]])
-
-pass

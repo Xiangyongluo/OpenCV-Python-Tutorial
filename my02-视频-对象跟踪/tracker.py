@@ -5,6 +5,7 @@ https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/
 
 '''
 
+
 import cv2
 import sys
 
@@ -67,10 +68,28 @@ if __name__ == '__main__':
             cv2.putText(frame, "Tracking failure detected", (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
 
         # Display tracker type on frame
-        cv2.putText(frame, tracker_type + " Tracker", (100, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2)
+        cv2.putText(
+            frame,
+            f"{tracker_type} Tracker",
+            (100, 20),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.75,
+            (50, 170, 50),
+            2,
+        )
+
 
         # Display FPS on frame
-        cv2.putText(frame, "FPS : " + str(int(fps)), (100, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2)
+        cv2.putText(
+            frame,
+            f"FPS : {int(fps)}",
+            (100, 50),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.75,
+            (50, 170, 50),
+            2,
+        )
+
 
         # Display result
         cv2.imshow("Tracking", frame)

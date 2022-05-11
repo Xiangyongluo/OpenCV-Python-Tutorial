@@ -11,6 +11,7 @@
 4. 在拉普拉斯的每一层  图像 合 苹果的左 与橘子的右  合  5. 根据 合后的图像 字塔 建原始图像。
 '''
 
+
 import cv2
 import numpy as np, sys
 
@@ -20,14 +21,14 @@ B = cv2.imread('orange.jpg')
 # generate Gaussian pyramid for A
 G = A.copy()
 gpA = [G]
-for i in range(6):
+for _ in range(6):
     G = cv2.pyrDown(G)
     gpA.append(G)
 
 # generate Gaussian pyramid for B
 G = B.copy()
 gpB = [G]
-for i in range(6):
+for _ in range(6):
     G = cv2.pyrDown(G)
     gpB.append(G)
 

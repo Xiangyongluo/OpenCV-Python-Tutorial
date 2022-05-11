@@ -54,10 +54,7 @@ def rect2rect_mtx(src, dst):
     src, dst = to_rect(src), to_rect(dst)
     cx, cy = (dst[1] - dst[0]) / (src[1] - src[0])
     tx, ty = dst[0] - src[0] * (cx, cy)
-    M = np.float64([[ cx,  0, tx],
-                    [  0, cy, ty],
-                    [  0,  0,  1]])
-    return M
+    return np.float64([[cx, 0, tx], [0, cy, ty], [0, 0, 1]])
 
 
 def lookat(eye, target, up = (0, 0, 1)):
@@ -202,11 +199,11 @@ class RectSelector:
 def grouper(n, iterable, fillvalue=None):
     '''grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx'''
     args = [iter(iterable)] * n
-    if PY3:
-        output = it.zip_longest(fillvalue=fillvalue, *args)
-    else:
-        output = it.izip_longest(fillvalue=fillvalue, *args)
-    return output
+    return (
+        it.zip_longest(fillvalue=fillvalue, *args)
+        if PY3
+        else it.izip_longest(fillvalue=fillvalue, *args)
+    )
 
 def mosaic(w, imgs):
     '''Make a grid from images.
@@ -215,10 +212,7 @@ def mosaic(w, imgs):
     imgs -- images (must have same size and format)
     '''
     imgs = iter(imgs)
-    if PY3:
-        img0 = next(imgs)
-    else:
-        img0 = imgs.next()
+    img0 = next(imgs) if PY3 else imgs.next()
     pad = np.zeros_like(img0)
     imgs = it.chain([img0], imgs)
     rows = grouper(w, imgs, pad)

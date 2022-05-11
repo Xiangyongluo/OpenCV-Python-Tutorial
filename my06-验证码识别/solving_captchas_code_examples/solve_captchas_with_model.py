@@ -57,8 +57,10 @@ for image_file in captcha_image_files:
             # This contour is too wide to be a single letter!
             # Split it in half into two letter regions!
             half_width = int(w / 2)
-            letter_image_regions.append((x, y, half_width, h))
-            letter_image_regions.append((x + half_width, y, half_width, h))
+            letter_image_regions.extend(
+                ((x, y, half_width, h), (x + half_width, y, half_width, h))
+            )
+
         else:
             # This is a normal letter by itself
             letter_image_regions.append((x, y, w, h))
@@ -105,7 +107,7 @@ for image_file in captcha_image_files:
 
     # Print the captcha's text
     captcha_text = "".join(predictions)
-    print("CAPTCHA text is: {}".format(captcha_text))
+    print(f"CAPTCHA text is: {captcha_text}")
 
     # Show the annotated image
     cv2.imshow("Output", output)

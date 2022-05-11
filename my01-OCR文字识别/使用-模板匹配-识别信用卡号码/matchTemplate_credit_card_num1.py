@@ -22,6 +22,7 @@ Credit Card #: 4000123456789010
 
 """
 
+
 # import the necessary packages
 from imutils import contours
 import numpy as np
@@ -148,7 +149,7 @@ cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 locs = []
 
 # loop over the contours
-for (i, c) in enumerate(cnts):
+for c in cnts:
     # compute the bounding box of the contour, then use the
     # bounding box coordinates to derive the aspect ratio
     (x, y, w, h) = cv2.boundingRect(c)
@@ -157,13 +158,10 @@ for (i, c) in enumerate(cnts):
     # since credit cards used a fixed size fonts with 4 groups
     # of 4 digits, we can prune potential contours based on the
     # aspect ratio根据每个轮廓的宽高比进行过滤
-    if ar > 2.5 and ar < 4.0:
-        # contours can further be pruned on minimum/maximum width
-        # and height使用纵横比，我们分析每个轮廓的形状。如果 ar   在2.5到4.0之间（比它高），以及  40到55个像素之间的 w以及   10到20像素之间的h，我们将一个方便的元组的边界矩形参数附加到 locs
-        if (w > 40 and w < 55) and (h > 10 and h < 20):
-            # append the bounding box region of the digits group
-            # to our locations list
-            locs.append((x, y, w, h))
+    if ar > 2.5 and ar < 4.0 and (w > 40 and w < 55) and (h > 10 and h < 20):
+        # append the bounding box region of the digits group
+        # to our locations list
+        locs.append((x, y, w, h))
 
 # sort the digit locations from left-to-right, then initialize the
 # list of classified digits
@@ -171,7 +169,7 @@ locs = sorted(locs, key=lambda x: x[0])
 output = []
 
 # loop over the 4 groupings of 4 digits
-for (i, (gX, gY, gW, gH)) in enumerate(locs):
+for gX, gY, gW, gH in locs:
     # initialize the list of group digits
     groupOutput = []
 
@@ -204,7 +202,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
         scores = []
 
         # loop over the reference digit name and digit ROI
-        for (digit, digitROI) in digits.items():
+        for digitROI in digits.values():
             # apply correlation-based template matching, take the
             # score, and update the scores list
             result = cv2.matchTemplate(roi, digitROI,
@@ -224,7 +222,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
     output.extend(groupOutput)
 
 # display the output credit card information to the screen
-print("Credit Card Type: {}".format(FIRST_NUMBER.get(output[0], 'None')))
-print("Credit Card #: {}".format("".join(output)))
+print(f"Credit Card Type: {FIRST_NUMBER.get(output[0], 'None')}")
+print(f'Credit Card #: {"".join(output)}')
 cv2.imshow("Image", image)  # TODO 效果不是很好，需要改进
 cv2.waitKey(0)

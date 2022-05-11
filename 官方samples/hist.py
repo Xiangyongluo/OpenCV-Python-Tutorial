@@ -35,8 +35,7 @@ def hist_curve(im):
         hist=np.int32(np.around(hist_item))
         pts = np.int32(np.column_stack((bins,hist)))
         cv2.polylines(h,[pts],False,col)
-    y=np.flipud(h)
-    return y
+    return np.flipud(h)
 
 def hist_lines(im):
     h = np.zeros((300,256,3))

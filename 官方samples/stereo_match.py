@@ -70,7 +70,7 @@ if __name__ == '__main__':
     out_colors = colors[mask]
     out_fn = 'out.ply'
     write_ply('out.ply', out_points, out_colors)
-    print('%s saved' % 'out.ply')
+    print('out.ply saved')
 
     cv2.imshow('left', imgL)
     cv2.imshow('disparity', (disp-min_disp)/num_disp)

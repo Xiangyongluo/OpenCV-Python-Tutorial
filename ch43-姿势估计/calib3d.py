@@ -72,7 +72,7 @@ for fname in glob.glob('../data/left*.jpg'):
         cv2.imshow('img', img)
         k = cv2.waitKey(0) & 0xFF
         if k == ord('s'):
-            cv2.imwrite(fname[:6] + '.png', img)
+            cv2.imwrite(f'{fname[:6]}.png', img)
 cv2.destroyAllWindows()
 
 #如果你对计算机图形学感兴趣的  为了增加图像的真实性 你可以使用 OpenGL 来渲染更复杂的图形。 下一个目标

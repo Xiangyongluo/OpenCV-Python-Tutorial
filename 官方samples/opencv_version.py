@@ -10,6 +10,7 @@ Usage:
         --help:  print this help
 '''
 
+
 # Python 2/3 compatibility
 from __future__ import print_function
 
@@ -24,9 +25,9 @@ if __name__ == '__main__':
     except IndexError:
         param = ""
 
-    if "--build" == param:
+    if param == "--build":
         print(cv2.getBuildInformation())
-    elif "--help" == param:
+    elif param == "--help":
         print("\t--build\n\t\tprint complete build info")
         print("\t--help\n\t\tprint this help")
     else:

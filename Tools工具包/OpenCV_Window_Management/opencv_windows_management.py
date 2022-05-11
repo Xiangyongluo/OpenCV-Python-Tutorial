@@ -24,7 +24,7 @@ class Window:
 
 class opencv_windows_management:
     def __init__(self):
-        self.windows = dict()
+        self.windows = {}
 
         root = tk.Tk()
         screen_width = root.winfo_screenwidth()

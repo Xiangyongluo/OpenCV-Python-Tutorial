@@ -15,7 +15,7 @@ counts = {}
 
 # loop over the image paths
 for (i, captcha_image_file) in enumerate(captcha_image_files):
-    print("[INFO] processing image {}/{}".format(i + 1, len(captcha_image_files)))
+    print(f"[INFO] processing image {i + 1}/{len(captcha_image_files)}")
 
     # Since the filename contains the captcha text (i.e. "2A2X.png" has the text "2A2X"),
     # grab the base filename as the text
@@ -52,8 +52,10 @@ for (i, captcha_image_file) in enumerate(captcha_image_files):
             # This contour is too wide to be a single letter!
             # Split it in half into two letter regions!
             half_width = int(w / 2)
-            letter_image_regions.append((x, y, half_width, h))
-            letter_image_regions.append((x + half_width, y, half_width, h))
+            letter_image_regions.extend(
+                ((x, y, half_width, h), (x + half_width, y, half_width, h))
+            )
+
         else:
             # This is a normal letter by itself
             letter_image_regions.append((x, y, w, h))
@@ -85,7 +87,7 @@ for (i, captcha_image_file) in enumerate(captcha_image_files):
 
         # write the letter image to a file
         count = counts.get(letter_text, 1)
-        p = os.path.join(save_path, "{}.png".format(str(count).zfill(6)))
+        p = os.path.join(save_path, f"{str(count).zfill(6)}.png")
         cv2.imwrite(p, letter_image)
 
         # increment the count for the current key

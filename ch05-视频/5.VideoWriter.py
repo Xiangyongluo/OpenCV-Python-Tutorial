@@ -18,17 +18,15 @@ out = cv2.VideoWriter('output.avi', fourcc, 20.0, (width, height))
 
 while cap.isOpened():
     ret, frame = cap.read()
-    if ret is True:
-
-        frame = cv2.resize(frame, (640, 480))
-
-        # write the flipped frame
-        out.write(frame)
-
-        cv2.imshow('frame', frame)
-
-    else:
+    if ret is not True:
         break
+
+    frame = cv2.resize(frame, (640, 480))
+
+    # write the flipped frame
+    out.write(frame)
+
+    cv2.imshow('frame', frame)
 
     key = cv2.waitKey(1)
     if key == ord("q"):

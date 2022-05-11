@@ -64,7 +64,7 @@ good = []
 pts1 = []
 pts2 = []
 # ratio test as per Lowe's paper
-for i, (m, n) in enumerate(matches):
+for m, n in matches:
     if m.distance < 0.8 * n.distance:
         good.append(m)
         pts2.append(kp2[m.trainIdx].pt)

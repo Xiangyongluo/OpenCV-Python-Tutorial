@@ -15,14 +15,12 @@ from collections import Counter
 
 
 def detect_weiqi(img):  # 检测棋子的颜色
-    txt = 'black'
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     ret, threshold = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
 
     c = Counter(list(threshold.flatten()))
     print(c.most_common())
-    if c.most_common()[0][0] != 0:
-        txt = 'white'
+    txt = 'white' if c.most_common()[0][0] != 0 else 'black'
     return txt, threshold
 
 

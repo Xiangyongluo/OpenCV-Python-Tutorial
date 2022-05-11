@@ -29,7 +29,7 @@ while cap.isOpened():
     if key == ord("q"):
         break
     elif key == ord("s"):
-        cv2.imwrite(id_generator() + '.jpg', frame)
+        cv2.imwrite(f'{id_generator()}.jpg', frame)
 
 cap.release()
 cv2.destroyAllWindows()

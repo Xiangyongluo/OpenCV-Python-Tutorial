@@ -54,8 +54,8 @@ while True:
             print("unsupported format")
             break
 
-    cv2.putText(img, "Mode: {}".format(fourcc), (15, 40), font, 1.0, color)
-    cv2.putText(img, "FPS: {}".format(fps), (15, 80), font, 1.0, color)
+    cv2.putText(img, f"Mode: {fourcc}", (15, 40), font, 1.0, color)
+    cv2.putText(img, f"FPS: {fps}", (15, 80), font, 1.0, color)
     cv2.imshow("Video", img)
 
     k = cv2.waitKey(1)

@@ -15,6 +15,7 @@ FLANN 是快速最近邻搜索包 Fast_Library_for_Approximate_Nearest_Neighbors
 
 
 
+
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
@@ -38,7 +39,7 @@ search_params = dict(checks=50)  # or pass empty dictionary
 flann = cv2.FlannBasedMatcher(index_params, search_params)
 matches = flann.knnMatch(des1, des2, k=2)
 # Need to draw only good matches, so create a mask
-matchesMask = [[0, 0] for i in range(len(matches))]
+matchesMask = [[0, 0] for _ in range(len(matches))]
 
 # ratio test as per Lowe's paper
 for i, (m, n) in enumerate(matches):

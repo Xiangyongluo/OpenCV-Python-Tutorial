@@ -11,15 +11,12 @@ def sharpen(my_image):
     ## [basic_method_loop]
     for j in range  (1, height-1):
         for i in range  (1, width-1):
-            for k in range  (0, n_channels):
+            for k in range(n_channels):
                 sum = 5 * my_image[j, i, k] - my_image[j + 1, i, k] - my_image[j - 1, i, k]\
                      - my_image[j, i + 1, k] - my_image[j, i - 1, k];
 
-                if sum > 255:
-                    sum = 255
-                if sum < 0:
-                    sum = 0
-
+                sum = min(sum, 255)
+                sum = max(sum, 0)
                 result[j, i, k] = sum
     ## [basic_method_loop]
 

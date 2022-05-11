@@ -73,7 +73,7 @@ class MOSSE:
         self.G = cv2.dft(g, flags=cv2.DFT_COMPLEX_OUTPUT)
         self.H1 = np.zeros_like(self.G)
         self.H2 = np.zeros_like(self.G)
-        for i in xrange(128):
+        for _ in xrange(128):
             a = self.preprocess(rnd_warp(img))
             A = cv2.dft(a, flags=cv2.DFT_COMPLEX_OUTPUT)
             self.H1 += cv2.mulSpectrums(self.G, A, 0, conjB=True)
@@ -110,8 +110,7 @@ class MOSSE:
         kernel = np.uint8( (f-f.min()) / f.ptp()*255 )
         resp = self.last_resp
         resp = np.uint8(np.clip(resp/resp.max(), 0, 1)*255)
-        vis = np.hstack([self.last_img, kernel, resp])
-        return vis
+        return np.hstack([self.last_img, kernel, resp])
 
     def draw_state(self, vis):
         (x, y), (w, h) = self.pos, self.size
